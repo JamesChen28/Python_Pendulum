@@ -1,0 +1,145 @@
+
+廣義座標
+(q1, q2, q3, ..., qn)
+
+廣義速度
+(q1., q2., q3., ..., qn.)
+qi. = dqi/dt
+
+v = dr/dt = sum(∂r/∂qi * qi.) + ∂r/∂t
+T = 1/2 * m * v^2
+  = 1/2 * m * (sum(∂r/∂qi * qi.) + ∂r/∂t)^2
+
+
+拉格朗日量 = 動能 - 位能
+L = T - V
+
+拉格朗日方程
+d(∂L/∂q.)/dt - ∂L/∂q = 0
+
+
+
+自由落體
+T = 1/2 * m * v^2 = 1/2 * m * x.^2
+V = -m * g * x
+L = T - V = 1/2 * m * x.^2 + m * g * x
+0 = d(∂L/∂x.)/dt - ∂L/∂x
+  = d(1/2 * m * 2 * x.)/dt - m * g
+  = d(m * x.)/dt - m * g
+  = m * d(x.)/dt - m * g
+  = m * x.. - m * g
+x.. = g
+
+
+
+具移動支撐點的單擺
+移動支撐點Q (X, 0) 質量M
+單擺P (x, y) 質量m
+擺繩長度l
+擺繩與y軸夾角theta
+
+x = X + l * sin(theta)
+y = l * cos(theta)
+d(sin(theta))/dt = cos(theta) * theta.
+d(cos(theta))/dt = -sin(theta) * theta.
+
+T = 1/2 * M * X.^2 + 1/2 * m * (x.^2 + y.^2)
+V = -m * g * y
+L = T - V
+  = 1/2 * M * X.^2 + 1/2 * m * (x.^2 + y.^2) + m * g * y
+  = 1/2 * M * X.^2 + 1/2 * m * ((X. + l * cos(theta) * theta.)^2 + (-l * sin(theta) * theta.)^2) + m * g * l * cos(theta)
+  = 1/2 * M * X.^2 + 1/2 * m * (X.^2 + l^2 * cos^2(theta) * theta.^2 + 2 * X. * l * cos(theta) * theta. + l^2 * sin^2(theta) * theta.^2) + m * g * l * cos(theta)
+  = 1/2 * M * X.^2 + 1/2 * m * (X.^2 + l^2 * theta.^2 + 2 * X. * l * cos(theta) * theta.) + m * g * l * cos(theta)
+
+根據拉格朗日方程
+d(∂L/∂X.)/dt - ∂L/∂X = 0
+d(∂L/∂theta.)/dt - ∂L/∂theta = 0
+
+對於X座標的運動方程
+d(∂L/∂X.)/dt - ∂L/∂X = 0
+  = d(M * X. + m * X. + m * l * cos(theta) * theta.)/dt - 0
+  = d((M + m) * X. + m * l * cos(theta) * theta.)/dt
+  = (M + m) * X.. - m * l * sin(theta) * theta.^2 + m * l * cos(theta) * theta..
+(M + m) * X.. + m * l * cos(theta) * theta.. - m * l * sin(theta) * theta.^2 = 0
+
+對於theta座標的運動方程
+d(∂L/∂theta.)/dt - ∂L/∂theta = 0
+  = d(m * l^2 * theta. + m * X. * l * cos(theta))/dt - (-m * X. * l * sin(theta) * theta. - m * g * l * sin(theta))
+  = d(m * l^2 * theta. + m * X. * l * cos(theta))/dt + (X. * theta. + g) * m * l * sin(theta)
+  = m * l^2 * theta.. + m * l * (X.. * cos(theta) - X. * sin(theta) * theta.) + (X. * theta. + g) * m * l * sin(theta)
+  = m * l^2 * theta.. + m * l * X.. * cos(theta) - m * l * X. * sin(theta) * theta. + X. * theta. * m * l * sin(theta) + g * m * l * sin(theta)
+  = m * l^2 * theta.. + m * l * X.. * cos(theta) + g * m * l * sin(theta)
+theta.. + X.. * cos(theta) / l + g * sin(theta) / l = 0
+
+
+
+雙擺
+原點O (0, 0)
+擺線1 長度l1
+擺線2 長度l2
+擺線1與y軸夾角 theta1
+擺線2與y軸夾角 theta2
+單擺1 質量m1 (x1, y1)
+單擺2 質量m2 (x2, y2)
+
+x1 = l1 * sin(theta1)
+y1 = l1 * con(theta1)
+x2 = l1 * sin(theta1) + l2 * sin(theta2)
+y2 = l1 * cos(theta1) + l2 * cos(theta2)
+
+x1. = l1 * cos(theta1) * theta1.
+y1. = -l1 * sin(theta1) * theta1.
+x2. = l1 * cos(theta1) * theta1. + l2 * cos(theta2) * theta2.
+y2. = -l1 * sin(theta1) * theta1. - l2 * sin(theta2) * theta2.
+
+x1.^2 = l1^2 * cos^2(theta1) * theta1.^2
+y1.^2 = l1^2 * sin^2(theta1) * theta1.^2
+x2.^2 = l1^2 * cos^2(theta1) * theta1.^2 + l2^2 * cos^2(theta2) * theta2.^2 + 2 * l1 * cos(theta1) * theta1. * l2 * cos(theta2) * theta2.
+      = l1^2 * cos^2(theta1) * theta1.^2 + l2^2 * cos^2(theta2) * theta2.^2 + 2 * l1 * l2 * cos(theta1) * cos(theta2) * theta1. * theta2.
+y2.^2 = l1^2 * sin^2(theta1) * theta1.^2 + l2^2 * sin^2(theta2) * theta2.^2 + 2 * l1 * sin(theta1) * theta1. * l2 * sin(theta2) * theta2.
+      = l1^2 * sin^2(theta1) * theta1.^2 + l2^2 * sin^2(theta2) * theta2.^2 + 2 * l1 * l2 * sin(theta1) * sin(theta2) * theta1. * theta2.
+
+x1.^2 + y1.^2 = l1^2 * theta1.^2
+x2.^2 + y2.^2 = l1^2 * theta1.^2 + l2^2 * theta2.^2 + 2 * l1 * l2 * theta1. * theta2. * (sin(theta1) * sin(theta2) + cos(theta1) * cos(theta2))
+              = l1^2 * theta1.^2 + l2^2 * theta2.^2 + 2 * l1 * l2 * theta1. * theta2. * cos(theta1 - theta2)
+
+T = 1/2 * m1 * (x1.^2 + y1.^2) + 1/2 * m2 * (x2.^2 + y2.^2)
+  = 1/2 * m1 * l1^2 * theta1.^2 + 1/2 * m2 * (x2.^2 + y2.^2)
+  = 1/2 * m1 * l1^2 * theta1.^2 + 1/2 * m2 * (l1^2 * theta1.^2 + l2^2 * theta2.^2 + 2 * l1 * l2 * theta1. * theta2. * cos(theta1 - theta2))
+  = 1/2 * (m1 + m2) * l1^2 * theta1.^2 + 1/2 * m2 * (l2^2 * theta2.^2) + m2 * l1 * l2 * theta1. * theta2. * cos(theta1 - theta2))
+
+V = -(m1 * g * y1 + m2 * g * y2)
+  = -(m1 * g * l1 * con(theta1) + m2 * g * l1 * cos(theta1) + m2 * g * l2 * cos(theta2))
+  = -((m1 + m2) * g * l1 * cos(theta1) + m2 * g * l2 * cos(theta2))
+
+L = T - V
+  = 1/2 * (m1 + m2) * l1^2 * theta1.^2 + 1/2 * m2 * (l2^2 * theta2.^2) + m2 * l1 * l2 * theta1. * theta2. * cos(theta1 - theta2) + (m1 + m2) * g * l1 * cos(theta1) + m2 * g * l2 * cos(theta2)
+
+根據拉格朗日方程
+d(∂L/∂theta1.)/dt - ∂L/∂theta1 = 0
+d(∂L/∂theta2.)/dt - ∂L/∂theta2 = 0
+
+∂L/∂theta1. = (m1 + m2) * l1^2 * theta1. + m2 * l1 * l2 * theta2. * cos(theta1 - theta2)
+d(∂L/∂theta1.)/dt = (m1 + m2) * l1^2 * theta1.. + m2 * l1 * l2 * (theta2.. * cos(theta1 - theta2) - theta2. * sin(theta1 - theta2) * (theta1. - theta2.))
+                  = (m1 + m2) * l1^2 * theta1.. + m2 * l1 * l2 * (theta2.. * cos(theta1 - theta2) - theta2. * sin(theta1 - theta2) * theta1. + theta2.^2 * sin(theta1 - theta2))
+				  = (m1 + m2) * l1^2 * theta1.. + m2 * l1 * l2 * theta2.. * cos(theta1 - theta2) + m2 * l1 * l2 * theta2.^2 * sin(theta1 - theta2) - m2 * l1 * l2 * theta1. * theta2. * sin(theta1 - theta2)
+∂L/∂theta1 = -m2 * l1 * l2 * theta1. * theta2. * sin(theta1 - theta2) - (m1 + m2) * g * l1 * sin(theta1)
+
+∂L/∂theta2. =  m2 * l2^2 * theta2. + m2 * l1 * l2 * theta1. * cos(theta1 - theta2)
+d(∂L/∂theta2.)/dt = m2 * l2^2 * theta2.. + m2 * l1 * l2 * (theta1.. * cos(theta1 - theta2) - theta1. * sin(theta1 - theta2) * (theta1. - theta2.))
+                  = m2 * l2^2 * theta2.. + m2 * l1 * l2 * (theta1.. * cos(theta1 - theta2) - theta1.^2 * sin(theta1 - theta2) * + theta2. * theta1. * sin(theta1 - theta2))
+				  = m2 * l2^2 * theta2.. + m2 * l1 * l2 * theta1.. * cos(theta1 - theta2) + m2 * l1 * l2 * theta1. * theta2. * sin(theta1 - theta2) - m2 * l1 * l2 * theta1.^2 * sin(theta1 - theta2)
+∂L/∂theta2 = m2 * l1 * l2 * theta1. * theta2. * sin(theta1 - theta2) -  m2 * g * l2 * sin(theta2)
+
+對於theta1座標的運動方程
+d(∂L/∂theta1.)/dt - ∂L/∂theta1 = 0
+  = (m1 + m2) * l1^2 * theta1.. + m2 * l1 * l2 * theta2.. * cos(theta1 - theta2) + m2 * l1 * l2 * theta2.^2 * sin(theta1 - theta2) - m2 * l1 * l2 * theta1. * theta2. * sin(theta1 - theta2) - (-m2 * l1 * l2 * theta1. * theta2. * sin(theta1 - theta2) - (m1 + m2) * g * l1 * sin(theta1))
+  = (m1 + m2) * l1^2 * theta1.. + m2 * l1 * l2 * theta2.. * cos(theta1 - theta2) + m2 * l1 * l2 * theta2.^2 * sin(theta1 - theta2) + (m1 + m2) * g * l1 * sin(theta1)
+  = l1 * ((m1 + m2) * l1 * theta1.. + m2 * l2 * theta2.. * cos(theta1 - theta2) + m2 * l2 * theta2.^2 * sin(theta1 - theta2) + (m1 + m2) * g * sin(theta1))
+
+對於theta2座標的運動方程
+d(∂L/∂theta2.)/dt - ∂L/∂theta2 = 0
+  = m2 * l2^2 * theta2.. + m2 * l1 * l2 * theta1.. * cos(theta1 - theta2) + m2 * l1 * l2 * theta1. * theta2. * sin(theta1 - theta2) - m2 * l1 * l2 * theta1.^2 * sin(theta1 - theta2) - (m2 * l1 * l2 * theta1. * theta2. * sin(theta1 - theta2) -  m2 * g * l2 * sin(theta2))
+  = m2 * l2^2 * theta2.. + m2 * l1 * l2 * theta1.. * cos(theta1 - theta2) - m2 * l1 * l2 * theta1.^2 * sin(theta1 - theta2) + m2 * g * l2 * sin(theta2)
+  = m2 * l2 * (l2 * theta2.. + l1 * theta1.. * cos(theta1 - theta2) - l1 * theta1.^2 * sin(theta1 - theta2) + g * sin(theta2))
+
